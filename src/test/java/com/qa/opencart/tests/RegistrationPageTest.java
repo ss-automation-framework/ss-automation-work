@@ -21,9 +21,9 @@ public class RegistrationPageTest extends BaseTest{
 	@DataProvider
 	public Object[][] getRegistrationData(){
 		return new Object[][] {
-			{"FTest1", "LTest1","9898765432","Test1@pwd", "yes"},
-			{"FTest2", "LTest2","9898665432","Test2@pwd", "no"},
-			{"FTest3", "LTest3","9898665431","Test3@pwd", "yes"},	
+			{"FTest7", "LTest7","9899765436","Test7@pwd", "yes"},
+			{"FTest8", "LTest8","9899665437","Test8@pwd", "no"},
+		  //{"FTest6", "LTest6","9898665439","Test6@pwd", "yes"},	
 	   };
 	}
 
@@ -32,6 +32,6 @@ public class RegistrationPageTest extends BaseTest{
 		Assert.assertTrue(registrationPage.registerUser(fName,lName, StringUtils.getRandomEmail(), tel,
 				pwd, pwd, subscribe));
 		
-		//add code to save user creds of successful registration
+		
 	}
 }

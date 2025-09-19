@@ -41,10 +41,10 @@ public boolean registerUser(String firstName, String lastName, String email,
 	eleUtil.waitForElementVisible(this.firstName, AppConstants.DEFAULT_SHORT_WAIT).sendKeys(firstName);
 	eleUtil.doSendKeys(this.lastName, lastName);
 	eleUtil.doSendKeys(this.email, email);
-	System.out.println("User Reg with email username: "+email);
 	eleUtil.doSendKeys(this.telephone, telephone);
 	eleUtil.doSendKeys(this.password, password);
-	System.out.println("Registered User username: "+email+" Password: "+password);
+	//To print user creds of successful registration on console
+	System.out.println("Registered User\nUsername: " + email + "\nPassword: " + password);
 	eleUtil.doSendKeys(this.confirmpassword, cPwd);
 	
 	if(subscribe.equalsIgnoreCase("yes")) {
