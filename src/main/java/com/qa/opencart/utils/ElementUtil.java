@@ -20,6 +20,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.opencart.exceptions.ElementException;
 
+import io.qameta.allure.Step;
+
 public class ElementUtil {
 	
 	private WebDriver driver;
@@ -49,6 +51,7 @@ public class ElementUtil {
 	 return getElement(locator).getText();
 	}
 	
+	@Step("checking if element: {0} is displayed on the page")
 	public boolean isElementDisplayed(By locator) {
 		try {
 		return getElement(locator).isDisplayed();
@@ -189,6 +192,7 @@ public class ElementUtil {
 	   * @param locator used to find the element
 	   * @return the WebElement once it is located and visible
 	   */
+	@Step("waiting for element: {0} is visible within: {1} seconds")
 	public WebElement waitForElementVisible(By locator, int timeout) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -310,6 +314,7 @@ public class ElementUtil {
 		return driver.getTitle();
 	}
 	
+	@Step("Waiting for page title with expected value:{1}")
 	public String waitForTitleIs(int timeout, String expectedTitleValue) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		
@@ -322,6 +327,7 @@ public class ElementUtil {
 		return driver.getTitle();
 	}
 	
+	@Step("Waiting for page url with expected fraction value:{1}")
 	public String waitForURLContains(int timeout, String fractionURLValue) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		

@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
 
+import io.qameta.allure.Step;
+
 public class LoginPage {
 	
 	private WebDriver driver;
@@ -29,26 +31,32 @@ public class LoginPage {
 	}
 	
 	//public page methods/actions
+	
+	@Step("Getting login page title...")
 	public String getLoginPageTitle() {
 		String title = eleUtil.waitForTitleIs(AppConstants.DEFAULT_SHORT_WAIT, AppConstants.LOGIN_PAGE_TITLE);
 		System.out.println("Login Page Title is "+title);
 		return title;
 	}
 	
+	@Step("Getting login page url...")
 	public String getLoginPageURL() {
 		String url = eleUtil.waitForURLContains(AppConstants.DEFAULT_SHORT_WAIT, AppConstants.LOGIN_PAGE_FRACTION_URL);
 		System.out.println("Login Page Title is "+url);
 		return url;
 	}
-
+	
+	@Step("Checking forgot pwd link exist...")  
 	public boolean isForgotPwdLinkExist() {
 		return eleUtil.isElementDisplayed(forgetPwdLink);
 	}
 	
+	@Step("Checking if login page header exist...")  
 	public boolean isheaderExist() {
 		return eleUtil.isElementDisplayed(header);
 	}
 	
+	@Step("Checking if login with valid creds using username: {0} and password: {1}")  
 	public AccountsPage doLogin(String username, String pwd) {
 		System.out.println("Username: "+username+" Password: "+pwd);
 		eleUtil.waitForElementVisible(emailID, AppConstants.DEFAULT_MEDIUM_WAIT).sendKeys(username);
@@ -57,6 +65,7 @@ public class LoginPage {
 		return new AccountsPage(driver);
 	}
 	
+	@Step("Checking login with invalid creds using with username: {0} and password: {1}")  
 	public boolean doLoginWithInvalidCreds(String invalidUname, String invalidPwd) {
 		System.out.println("Username: "+invalidUname+" Password: "+invalidPwd);
 		WebElement emailEle = eleUtil.waitForElementVisible(emailID, AppConstants.DEFAULT_MEDIUM_WAIT);
@@ -78,6 +87,7 @@ public class LoginPage {
 		}
 	}
 	
+	@Step("Navigating to Registration page...")
 	public RegistrationPage navigateToRegistrationPage() {
 		eleUtil.waitForElementVisible(registerLink, AppConstants.DEFAULT_SHORT_WAIT).click();
 		return new RegistrationPage(driver);

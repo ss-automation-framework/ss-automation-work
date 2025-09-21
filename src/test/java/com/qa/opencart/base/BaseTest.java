@@ -13,13 +13,17 @@ import org.testng.annotations.Parameters;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 
 import com.qa.opencart.factory.DriverFactory;
+import com.qa.opencart.listeners.TestAllureListener;
 import com.qa.opencart.pages.AccountsPage;
 import com.qa.opencart.pages.LoginPage;
 import com.qa.opencart.pages.ProductDetailPage;
 import com.qa.opencart.pages.RegistrationPage;
 import com.qa.opencart.pages.SearchResultsPage;
 
-@Listeners(ChainTestListener.class)
+import io.qameta.allure.Description;
+
+//@Listeners(ChainTestListener.class)
+//@Listeners({ChainTestListener.class, TestAllureListener.class})
 public class BaseTest {
 	
 	protected WebDriver driver;
@@ -31,6 +35,7 @@ public class BaseTest {
 	protected ProductDetailPage productInfoPage;
 	protected RegistrationPage registrationPage;
 	
+	@Description("this method to help launch the browser: {0} and url")
 	@Parameters({"browser"})
 	@BeforeTest
 	public void setUp(String browserName) {
@@ -44,6 +49,7 @@ public class BaseTest {
 	 loginPage = new LoginPage(driver);	
 	}
 	
+	
 	@AfterMethod
 	public void attachScreenshot(ITestResult result) {
 		if(!result.isSuccess()) {
@@ -51,6 +57,7 @@ public class BaseTest {
 		}
 	}
 	
+	@Description("this method is to help close the browser")
 	@AfterTest
 	public void tearDown() {
 		driver.quit();
