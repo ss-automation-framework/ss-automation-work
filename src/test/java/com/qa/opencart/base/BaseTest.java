@@ -8,6 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import com.aventstack.chaintest.plugins.ChainTestListener;
@@ -38,7 +39,7 @@ public class BaseTest {
 	@Description("this method to help launch the browser: {0} and url")
 	@Parameters({"browser"})
 	@BeforeTest
-	public void setUp(String browserName) {
+	public void setUp(@Optional("chrome")String browserName) {
 	 df = new DriverFactory();
 	 prop = df.initProp();
 	 

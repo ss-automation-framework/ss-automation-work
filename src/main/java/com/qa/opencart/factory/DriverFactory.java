@@ -25,23 +25,27 @@ public class DriverFactory {
 	
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 	
+	public OptionsManager optionsManager;
+	
 	public WebDriver initDriver(Properties prop) {
 		String browserName = prop.getProperty("browser");
 		System.out.println("Browser Name is: "+browserName);
 		ChainTestListener.log("Running Browser: "+browserName);
 		
+		optionsManager = new OptionsManager(prop);
+		
 		switch (browserName.trim().toLowerCase()) {
 		case "chrome":
 			//driver = new ChromeDriver();
-			tlDriver.set(new ChromeDriver()); 
+			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions())); 
 			break;
 		case "firefox":
 			//driver = new FirefoxDriver();
-			tlDriver.set(new FirefoxDriver()); 
+			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions())); 
 			break;
 		case "edge":
 			//driver = new EdgeDriver();
-			tlDriver.set(new EdgeDriver());
+			tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
 			break;
 		case "safari":
 			//driver = new SafariDriver();
